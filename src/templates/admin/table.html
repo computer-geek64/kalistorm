@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block style %}
+    table, th, td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    #submit {
+        float: right;
+        height: 40px;
+        width: 100%;
+        margin-top: 10px;
+        background-color: #01FF70;
+        color: white;
+        font-weight: bold;
+        border: 0px solid white;
+        border-radius: 5px;
+    }
+
+    #submit:hover {
+        background-color: #2ECC40;
+    }
+
+    input[type=text], input[type=password] {
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 200px;
+        padding: 3px;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+        border-color: #0074D9;
+    }
+
+    select {
+        border: 2px solid #DDDDDD;
+        border-radius: 3px;
+    }
+
+    select:hover {
+        border-color: black;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <form method="post">
+        <fieldset>
+            <legend>{{title}}</legend>
+            <table>
+                <tr>
+                    {% for header in headers %}
+                        <th>{{header}}</th>
+                    {% endfor %}
+                </tr>
+                {% for i in range(table|length) %}
+                    <tr>
+                        {% for j in range(table[i]|length) %}
+                            <td>
+                                {% if headers[j] in bools %}
+                                    {% if table[i][j].lower() == "y" %}
+                                        <select onchange="this.name = '{{i}}-{{j}}';">
+                                            <option value="y" selected="selected">y</option>
+                                            <option value="n">n</option>
+                                        </select>
+                                    {% else %}
+                                        <select onchange="this.name = '{{i}}-{{j}}';">
+                                            <option value="y">y</option>
+                                            <option value="n" selected="selected">n</option>
+                                        </select>
+                                    {% endif %}
+                                {% else %}
+                                    <input type="text" value="{{table[i][j]}}" onchange="this.name = '{{i}}-{{j}}';">
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+            <input id="submit" type="submit" value="Update">
+        </fieldset>
+    </form>
+{% endblock %}

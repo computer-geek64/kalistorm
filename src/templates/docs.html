@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Docs | {{API_NAME}}</title>
+    <link rel="icon" href="/static/assets/img/logo.jpg">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/docs.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700">
+    <style>
+        #title-bar {
+            margin-top: -68px;
+            position: fixed;
+            background-color: white;
+            width: 100%;
+            box-shadow: 0 3px 10px #cccccc;
+            z-index: 1030;
+        }
+
+        #title-bar > h1 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="title-bar">
+        <h1>{{API_NAME}}</h1>
+    </div>
+    <div class="main" style="margin-top: 68px;">
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <div class="container-fluid">
+                {% for i in range(content|length) %}
+                <h3 class="page-title">{{content[i]['title']}}</h3>
+                <h4 class="page-title">
+                    <code style="background-color: #6f6f6f; color: white;">{{content[i]['request_type'].upper()}} {{content[i]['url']}}</code>
+                    <br>
+                    <br>
+                    {{content[i]['description']|safe}}</h4>
+                <div class="row">
+                    <div class="col-md-7">
+                        <!-- TABLE HOVER -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Request</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Type</th>
+                                            <th>Position</th>
+                                            <th>Required</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for parameter in content[i]['request'] %}
+                                            <tr>
+                                                <td>{{parameter['parameter']}}</td>
+                                                <td><code>{{parameter['type']}}</code></td>
+                                                <td>{{parameter['position'].capitalize()}}</td>
+                                                <td>{{parameter['required'].capitalize()}}</td>
+                                                <td>{{parameter['description']|safe}}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- END TABLE HOVER -->
+                    </div>
+                    <div class="col-md-5">
+                        <!-- TABLE HOVER -->
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Response</h3>
+                            </div>
+                            <div class="panel-body">
+                                <pre>{{content[i]['response']}}</pre>
+                            </div>
+                        </div>
+                        <!-- END TABLE HOVER -->
+                    </div>
+                </div>
+                <br>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->
+    </div>
+</body>
+</html>

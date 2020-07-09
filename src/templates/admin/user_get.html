@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block style %}
+    .title {
+        text-align: center;
+    }
+
+    #submit {
+        height: 40px;
+        width: 200px;
+        margin-top: 10px;
+        background-color: #01FF70;
+        color: white;
+        font-weight: bold;
+        border: 0px solid white;
+        border-radius: 5px;
+    }
+
+    #submit:hover {
+        background-color: #2ECC40;
+    }
+
+    select {
+        width: 200px;
+        border: 2px solid #DDDDDD;
+        border-radius: 3px;
+    }
+
+    select:hover {
+        border-color: black;
+    }
+
+    fieldset {
+        max-width: 200px;
+        margin: auto;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <form method="post">
+        <fieldset>
+            <legend>{{title}}</legend>
+            <select name="user">
+                {% for user in users %}
+                    <option value="{{user}}">{{user}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit" id="submit">
+        </fieldset>
+    </form>
+{% endblock %}

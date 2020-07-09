@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block style %}
+    .title {
+        text-align: center;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <ul>
+        <li><a href="movies">Movies</a></li>
+        <li><a href="real">Real</a></li>
+        <li><a href="scenes">Scenes</a></li>
+        <li><a href="shows">TV Shows</a></li>
+        <li><a href="tmp">Temp</a></li>
+    </ul>
+{% endblock %}

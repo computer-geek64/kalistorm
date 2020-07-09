@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block style %}
+    .title {
+        text-align: center;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <a href="create">Create</a>
+    <br>
+    <a href="edit">Edit</a>
+    <br>
+    <a href="delete">Delete</a>
+{% endblock %}

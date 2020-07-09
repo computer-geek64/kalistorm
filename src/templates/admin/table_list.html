@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block style %}
+    table, th, td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    #submit {
+        float: right;
+        height: 40px;
+        width: 100%;
+        margin-top: 10px;
+        background-color: #01FF70;
+        color: white;
+        font-weight: bold;
+        border: 0px solid white;
+        border-radius: 5px;
+    }
+
+    #submit:hover {
+        background-color: #2ECC40;
+    }
+
+    input[type=text], input[type=password] {
+        border: 2px solid black;
+        border-radius: 5px;
+        width: 200px;
+        padding: 3px;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+        border-color: #0074D9;
+    }
+
+    select {
+        border: 2px solid #DDDDDD;
+        border-radius: 3px;
+    }
+
+    select:hover {
+        border-color: black;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <ul>
+        {% for table in tables %}
+            <li><a href="{{table}}">{{table}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

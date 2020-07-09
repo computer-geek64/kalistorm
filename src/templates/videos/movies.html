@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block style %}
+    .title {
+        text-align: center;
+    }
+{% endblock %}
+{% block content %}
+    <h1 class="title">{{title}}</h1>
+    <ul>
+        {% for movie in movies %}
+            <li><a href="{{movie[0]}}">{{movie[1]}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
